@@ -2,13 +2,40 @@
 //  Product.swift
 //  EasyShopper
 //
-//  Created by Morten Bek Ditlevsen on 11/06/2020.
-//  Copyright © 2020 Ka-ching. All rights reserved.
+//  Created by Cem Lapovski on 2020-06-30.
 //
 
-import Foundation
+import Alamofire
 
-struct Product: Decodable {
+struct Product {
+
     var id: String
-    #warning("Complete this data structure")
+    var name: String
+    var barcode: String
+    var description: String
+    var image_url: String
+    var retail_price: Int
+    var cost_price: Int?
+    
+    init?(value: [String:Any]) {
+        guard   let id = value["id"] as? String,
+                let name = value["name"] as? String,
+                let barcode = value["barcode"] as? String,
+                let description = value["description"] as? String,
+                let image_url = value["image_url"] as? String,
+                let retail_price = value["retail_price"] as? Int
+            else { return nil }
+        
+        if let cost_price = value["cost_price"] as? Int {
+            self.cost_price = cost_price
+        }
+            
+        self.id = id
+        self.name = name
+        self.barcode = barcode
+        self.description = description
+        self.image_url = image_url
+        self.retail_price = retail_price
+        
+    }
 }

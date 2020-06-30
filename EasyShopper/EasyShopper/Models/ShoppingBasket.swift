@@ -2,10 +2,22 @@
 //  ShoppingBasket.swift
 //  EasyShopper
 //
-//  Created by Morten Bek Ditlevsen on 11/06/2020.
-//  Copyright © 2020 Ka-ching. All rights reserved.
+//  Created by Cem Lapovski on 2020-06-30.
 //
 
 import Foundation
 
-#warning("Feel free to model a ShoppingBasket any way you like")
+protocol ShoppingBasketDelegate {
+    func saveBasket(products: [Product], total: Int)
+}
+
+struct ShoppingBasket {
+    var items: [Product]
+    var total: Int
+
+    
+    init() {
+        items = []
+        total = 0
+    }
+}
